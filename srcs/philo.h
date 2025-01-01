@@ -6,6 +6,7 @@
                     // thrad : create, join, detach
 #include <sys/time.h> // gettimeofday
 #include <limits.h>
+#include <errno.h>
 
 #define DEBUG   0
 
@@ -105,10 +106,11 @@ void    ft_usleep(long usec, t_table *table);
 void    write_status(t_philo_status status, t_philo *philo, bool debug);
 
 void    dinner_start(t_table *table);
-void    dinner_simulation(void *data);
+void    *dinner_simulation(void *data);
 void    *alone(void *arg);
 void    thinking(t_philo *philo, bool before_sim);
 bool    all_threads_running(t_mtx *mtx, long *threads, long philo_nbr);
 void    inc_long(t_mtx *mtx, long *value);
-
+void    desync_philos(t_philo *philo);
+void    *monitor_dinner(void *data);
 void    clean(t_table *table);

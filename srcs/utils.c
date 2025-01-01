@@ -58,8 +58,8 @@ void    clean(t_table *table)
         philo = table->philos + i;
         mutex_handle(&philo->philo_mtx, DESTROY);
     }
-    mutex_handle(&table->table_mtx);
-    mutex_handle(&table->write_mtx);
+    mutex_handle(&table->table_mtx, DESTROY);
+    mutex_handle(&table->write_mtx, DESTROY);
     free(table->forks);
     free(table->philos);
 }
